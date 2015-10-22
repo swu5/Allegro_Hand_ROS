@@ -74,6 +74,14 @@ double home_pose[DOF_JOINTS] =
 	60.0,   25.0,   15.0,   45.0
 };
 
+double test_pose[DOF_JOINTS] =
+{
+	0.0,  -10.0,   45.0,   50.0,  // Move single joint 4
+	0.0,  -10.0,   45.0,   45.0,	
+	5.0,   -5.0,   50.0,   45.0,	
+	60.0,   25.0,   15.0,   45.0
+};
+
 std::string pGainParams[DOF_JOINTS] =
 {
 	"~gains_pd/p/j00", "~gains_pd/p/j01", "~gains_pd/p/j02", "~gains_pd/p/j03", 
@@ -155,6 +163,11 @@ void libCmdCallback(const std_msgs::String::ConstPtr& msg)
 		for(int i=0; i<DOF_JOINTS; i++)	desired_position[i] = DEGREES_TO_RADIANS(home_pose[i]);
 		controlPD = true;
 	}
+	else if (lib_cmd.compare("test") == 0)
+	{
+		for(int i=0; i<DOF_JOINTS; i++)	desired_position[i] = DEGREES_TO_RADIANS(test_pose[i]);
+		controlPD = true;
+	}
 	else if (lib_cmd.compare("off") == 0)
 		controlPD = false;
 	
@@ -223,7 +236,8 @@ void initController(const std::string& whichHand)
 	printf("*************************************\n");
 	printf("      Joint PD Control Method        \n");
 	printf("-------------------------------------\n");
-    printf("  Only 'H', 'O', 'S', 'Space' works. \n");
+    	printf("  Only 'H', 'O', 'S', 'Space' works. \n");
+	printf("  Added 'T' \n");
 	printf("*************************************\n");	
 }
 

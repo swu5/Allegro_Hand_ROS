@@ -186,7 +186,8 @@ void AHKeyboard::keyLoop()
   	std::cout << "\tGrasp (envelop):\t\t'E'" << std::endl;  
   	std::cout << "\tMotors Off (free motion):\t'O'" << std::endl;  	
   	std::cout << "\tSave Current Pose:\t\t'S'" << std::endl;  
-  	std::cout << "\tPD Control (last saved):\t'Space'" << std::endl;   		
+  	std::cout << "\tPD Control (last saved):\t'Space'" << std::endl;   
+	std::cout << "\tTest single joint:\t'T'" << std::endl; 		
 	std::cout << " -----------------------------------------------------------------------------" << std::endl;  	  	
 	//std::cout << "  Note: Unless elsewhere implemented, these keyboard commands only work with " << std::endl;    
 	//std::cout << "  the 'allegro_hand_core_grasp' and 'allegro_hand_core_grasp_slp' packages." << std::endl;	  	
@@ -271,7 +272,13 @@ void AHKeyboard::keyLoop()
         	//cmd_ = 4;
         	ss << "save";
         	dirty = true;
-        	break;   	      	        	
+        	break;   
+	case KEYCODE_t:
+        	ROS_DEBUG("t_key: Move single joint");
+        	//cmd_ = 4;
+        	ss << "test";
+        	dirty = true;
+        	break; 	      	        	
     }
    
 
